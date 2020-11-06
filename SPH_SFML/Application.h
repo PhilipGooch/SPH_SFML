@@ -35,7 +35,7 @@ private:
 	void computeDensityPressure();
 	void computeForces();
 
-	const float PI = 3.14159265358979323846;
+	const float PI = 3.14159265358979323846f;
 
 	RenderWindow* window;
 	Input input;
@@ -47,6 +47,7 @@ private:
 
 	vector<Particle> particles;
 	vector<Vertex> vertices;
+	VertexBuffer vertex_buffer;
 
 	const int max_particles;
 

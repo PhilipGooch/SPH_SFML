@@ -5,7 +5,8 @@ Application::Application(RenderWindow* window) :
 	window(window),
 	running(true),
 	fps(-1),
-	max_particles(356),
+	//max_particles(356), // debug
+	max_particles(2250),
 	gravity(0.f, 12000 * 9.8f),
 	radius(16.0f),
 	radius_squared(pow(radius, 2)),
@@ -23,7 +24,7 @@ Application::Application(RenderWindow* window) :
 	height(H * scale),
 	active(false)
 {
-	window->setFramerateLimit(60);
+	//window->setFramerateLimit(60);
 
 	font.loadFromFile("arial.ttf");
 
@@ -33,7 +34,11 @@ Application::Application(RenderWindow* window) :
 	fps_text.setFillColor(sf::Color::White);
 	fps_text.setFont(font);
 
+	
+	bool vb = vertex_buffer.isAvailable();
+
 	spawnDam();
+
 }
 
 Application::~Application()
@@ -175,6 +180,8 @@ void Application::update()
 	
 }
 
+
+
 void Application::render()
 {
 	window->clear(Color::Black);
@@ -195,7 +202,7 @@ void Application::spawnDam()
 	int row = (width / radius) - 1;
 	for (float y = height - radius; y < height; /*y >= radius;*/ y -= radius)
 	{
-		for (float x = (row / 32 * 15) * radius + radius; x <= (row / 32 * 17) * radius + radius; x += radius)
+		for (float x = (row / 32 * 0) * radius + radius; x <= (row / 32 * 5) * radius + radius; x += radius)
 		{
 			if (particles.size() < max_particles)
 			{
