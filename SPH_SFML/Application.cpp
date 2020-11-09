@@ -34,11 +34,10 @@ Application::Application(RenderWindow* window) :
 	fps_text.setFillColor(sf::Color::White);
 	fps_text.setFont(font);
 
-	
-	bool vb = vertex_buffer.isAvailable();
+
+	vertex_buffer.create(max_particles);
 
 	spawnDam();
-
 }
 
 Application::~Application()
@@ -177,7 +176,7 @@ void Application::update()
 		vertices[i].position.x = (particles[i].position.x / scale);
 		vertices[i].position.y = (particles[i].position.y / scale);
 	}
-	
+	//vertex_buffer.update(vertices.data());
 }
 
 
@@ -189,6 +188,7 @@ void Application::render()
 	{
 		window->draw(&vertices[0], vertices.size(), sf::Points);
 	}
+	//window->draw(vertex_buffer);
 	if (fps >= 0)
 	{
 		fps_text.setString(to_string(fps));
@@ -212,6 +212,7 @@ void Application::spawnDam()
 			}
 			else
 			{
+				//vertex_buffer.update(vertices.data());
 				return;
 			}
 		}

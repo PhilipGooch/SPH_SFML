@@ -47,7 +47,8 @@ private:
 
 	vector<Particle> particles;
 	vector<Vertex> vertices;
-	VertexBuffer vertex_buffer;
+	VertexBuffer vertex_buffer{ sf::Points, sf::VertexBuffer::Static };
+	
 
 	const int max_particles;
 
